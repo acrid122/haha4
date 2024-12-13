@@ -3,7 +3,9 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'Dockerfile' // Название вашего Docker-образа
     }
-
+    tools {
+  'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'docker'
+    }
     stages {
         stage('Build') {
             steps {
