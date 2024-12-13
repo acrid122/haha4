@@ -1,7 +1,7 @@
 pipeline { 
     agent any 
     environment {
-        DOCKER_IMAGE = 'DockerFile' // Название вашего Docker-образа
+        DOCKER_IMAGE = 'Dockerfile' // Название вашего Docker-образа
     }
 
     stages {
