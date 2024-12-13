@@ -1,5 +1,9 @@
 pipeline { 
     agent any 
+    stage('Initialize'){
+        def dockerHome = tool 'Dockerfile'
+        env.PATH = "${dockerHome}/bin:${env.PATH}"
+    }
     environment {
         DOCKER_IMAGE = 'Dockerfile' // Название вашего Docker-образа
     }
