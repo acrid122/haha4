@@ -1,24 +1,27 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.9-slim'
-        }
-    }
-    environment {
-        PYTHON_SCRIPT = 'main.py'
-    }
+    agent any
     stages {
         stage('Initialize') {
             steps {
                 echo 'Initializing environment...'
-                sh 'python3 --version'
             }
         }
 
-        stage('Execute Script') {
+        stage('Build') {
             steps {
-                echo 'Running the Python script...'
-                sh 'python3 $PYTHON_SCRIPT'
+                echo 'Building the application...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing the application...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the application...'
             }
         }
     }
