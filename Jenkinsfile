@@ -1,13 +1,17 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:3.9-slim'
+        }
+    }
     environment {
-        PYTHON_SCRIPT = 'main.py'  // Имя скрипта, который нужно запустить
+        PYTHON_SCRIPT = 'main.py'
     }
     stages {
         stage('Initialize') {
             steps {
                 echo 'Initializing environment...'
-                sh 'python3 --version'  // Проверяем, установлен ли Python
+                sh 'python3 --version'
             }
         }
 
