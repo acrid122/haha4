@@ -1,32 +1,20 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'Dockerfile'  // Docker image name
+        PYTHON_SCRIPT = 'main.py'  // Имя скрипта, который нужно запустить
     }
     stages {
         stage('Initialize') {
             steps {
                 echo 'Initializing environment...'
+                sh 'python3 --version'  // Проверяем, установлен ли Python
             }
         }
 
-        stage('Build') {
+        stage('Execute Script') {
             steps {
-                echo 'Building the application...'
-                sh 'docker build . -t $DOCKER_IMAGE'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                echo 'Testing the application...'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
-                sh 'docker run -d --name $DOCKER_IMAGE -p 8080:80 $DOCKER_IMAGE'
+                echo 'Running the Python script...'
+                sh 'python3 $PYTHON_SCRIPT'
             }
         }
     }
